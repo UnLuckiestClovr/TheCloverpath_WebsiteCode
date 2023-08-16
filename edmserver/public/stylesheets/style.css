@@ -25,7 +25,16 @@ table.ProductTables {
 }
 
 table.ProductTables td, table.ProductTables th {
-  
+  border-width: 2px;
+  border-color: #3ddf20;
+  border-style: dotted;
+  padding: 3px;
+  width: 50%;
+}
+
+table.headerrow {
+  display: flex;
+  justify-content: space-between;
 }
 
 #WelcomeMessage {
@@ -49,4 +58,9 @@ table.ProductTables td, table.ProductTables th {
 #CoffeeLogo {
   width: 460px;
   height: 412px;
+}
+
+#CoffeeShopImage {
+  width: 75%;
+  height: auto;
 }
