@@ -32,6 +32,11 @@ table.ProductTables td, table.ProductTables th {
   width: 50%;
 }
 
+table.ProductTables th {
+  font-family: 'Cinzel', sans-serif;
+  font-size: large;
+}
+
 table.headerrow {
   display: flex;
   justify-content: space-between;
@@ -62,5 +67,10 @@ table.headerrow {
 
 #CoffeeShopImage {
   width: 75%;
+  height: auto;
+}
+
+#FlowerShopImage {
+  width: 80.5%;
   height: auto;
 }
