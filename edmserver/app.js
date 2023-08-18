@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/CoffeeShop', CoffeeShopRouter);
+app.use('/coffeeshop', CoffeeShopRouter);
 app.use('/FlowerShop', FlowerShopRouter);
 app.use('/users', usersRouter);
 

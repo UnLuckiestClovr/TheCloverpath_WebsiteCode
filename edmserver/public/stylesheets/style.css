@@ -12,6 +12,14 @@ a {
   color: #00B7FF;
 }
 
+h2 {
+  font-family: 'Cinzel', sans-serif;
+  color: whitesmoke;
+  text-align: center;
+  font-size: 35px;
+  background-color: #212121;
+}
+
 table.ProductTables, table.NavTable {
   width:100%;
   background-color: #515151;
@@ -22,6 +30,7 @@ table.ProductTables, table.NavTable {
   color: #FFFFFF;
   text-align: center;
   align-content: center;
+  font-size: larger;
 }
 
 table.NavTable {
@@ -51,6 +60,10 @@ table.ProductTables td, table.ProductTables th {
 table.ProductTables th {
   font-family: 'Cinzel', sans-serif;
   font-size: large;
+}
+
+table.ProductTables img {
+  width: 50%;
 }
 
 table.headerrow {
