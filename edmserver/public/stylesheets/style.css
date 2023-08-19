@@ -97,3 +97,7 @@ table.headerrow {
   width: 80.5%;
   height: auto;
 }
+
+h2.headrow {
+  margin-top: 8%;
+}
