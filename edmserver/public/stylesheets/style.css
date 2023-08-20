@@ -111,3 +111,9 @@ h3.FlowerSeasonHeaders {
   padding: 3px;
   background-color: #212121;
 }
+
+#FlowerShopInfo {
+  background-color: #212121;
+  font-size: large;
+  text-align: center;
+}
