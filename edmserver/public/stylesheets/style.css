@@ -101,3 +101,13 @@ table.headerrow {
 h2.headrow {
   margin-top: 8%;
 }
+
+h3.FlowerSeasonHeaders {
+  font-size: 30px;
+  text-align: center;
+  border-width: 2px;
+  border-color: #3ddf20;
+  border-style: dotted;
+  padding: 3px;
+  background-color: #212121;
+}
