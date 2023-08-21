@@ -1,6 +1,9 @@
 extends layout.pug
 
 block mainContent
+    div(id="orderOverlay")
+        p(class="OrderedFlowers") Overlay Text
+
     h2 If You Want to Get a Gift for Your Loved Ones,
         |  I Can Think of No Better Gifts than Our Lovely Seasonal Flowers! Catered to you Year-Round! 
     
@@ -22,6 +25,9 @@ block mainContent
                 td 
                     h3 Daffodils 
                     img(src="/images/flowers/Daffodils.jpg", alt="")
+                    p _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+                    button(class="orderButton") Click Me to Order Your Own!
+                    
                 td 
                     h3 Star Magnolias 
                     img(src="/images/flowers/StarMagnolia.jpg", alt="")
@@ -315,4 +321,3 @@ block mainContent
                 td 
                     h3 Camellias
                     img(src="/images/flowers/Camellias.jpg", alt="")
-
