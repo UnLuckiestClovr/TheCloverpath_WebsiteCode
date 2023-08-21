@@ -134,7 +134,7 @@ h3.FlowerSeasonHeaders {
 }
 
 /* CSS */
-.orderButton, #cancelOrder {
+.orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn{
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
   --color: #FFFFFF;
@@ -160,13 +160,17 @@ h3.FlowerSeasonHeaders {
 .orderButton:hover,
 .orderButton:focus-visible,
 #cancelOrder:hover,
-#cancelOrder:focus-visible{
+#cancelOrder:focus-visible,
+#ConfirmOrder:hover,
+#ConfirmOrder:focus-visible,
+#ReturnBtn:hover,
+#ReturnBtn:focus-visible{
   --_p: 0px;
   outline-color: var(--color);
   outline-offset: .05em;
 }
 
-.orderButton:active, #cancelOrder:active {
+.orderButton:active, #cancelOrder:active, #ConfirmOrder:active , #ReturnBtn:active{
   background: var(--color);
   color: #fff;
 }
