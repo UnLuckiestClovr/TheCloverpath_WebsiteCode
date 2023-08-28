@@ -67,8 +67,8 @@ async function createUser(username, email, name, age) {
             "_id": id,
             "username": username,
             "email": email,
-            "name": name,
-            "age": age
+            "u_name": name,
+            "u_age": age
         }
 
         await coll.insertOne(finalJSON)
@@ -76,11 +76,26 @@ async function createUser(username, email, name, age) {
         await client.close()
     } catch (error) {
         console.log(error)
+        console.log("CRUD ~ 47")
     }
 }
 
-async function updateUser() {
+async function updateUser(updateData) {
+    try {
+        await client.connect()
+        const db = client.db(MainBranch_DTBName)
+        const coll = db.collection()
+        console.log("Collection Found Succesfully")
 
+        const docExists = await coll.findOne({username: updateData['username']})
+        if(docExists) {
+            coll.updateOne({username: updateData['username']}, {$set: updateData})
+        }
+        else{console.log("Document Does not Exist Within Database")}
+    } catch (error) {
+        console.log(error)
+        console.log("CRUD ~ 82")
+    } 
 }
 
 // - - - Hashing Utils - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -94,6 +109,7 @@ async function hashPassword(username, plainTextPswrd) {
         })
     } catch (error) {
         console.log(error)
+        console.log("CRUD ~ 101")
     }
 }
 
@@ -128,15 +144,16 @@ async function createNewPasswordBlock(username, hashedPSWRD) {
         await client.close()
     } catch (error) {
         console.log(error)
+        console.log("CRUD - 113")
     }
 }
 
 // - - - Validation for Login - - -
 
-async function loginValidation(username, plainTextPswrd) {
-    const validUsername = loginUsernameCheck(username)
+async function loginValidation(loginData) {
+    const validUsername = loginUsernameCheck(loginData['username'])
     if (validUsername == true) {
-        const validPSWRD = validatePassword(username, plainTextPswrd)
+        const validPSWRD = validatePassword(loginData['username'], loginData['password'])
         if(validPSWRD == true) {
             return "LOGIN VALID"
         }
@@ -156,7 +173,7 @@ async function loginUsernameCheck(username) {
         const db = client.db(MainBranch_DTBName)
         const coll = db.collection(collNames[0])
 
-        const doc = coll.findOne({username: username})
+        const doc = await coll.findOne({username: username})
 
         await client.close()
 
@@ -192,6 +209,7 @@ module.exports = {
     CREATE: createUser,
     UPDATE: updateUser,
     StoreHash: hashPassword,
+    validUsername: loginUsernameCheck, 
     ValidPSWRD: validatePassword,
     LOGIN: loginValidation
 }

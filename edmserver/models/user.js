@@ -20,14 +20,14 @@ async function createUser(userData) {
     const boolName = validateUsername(userData.username)
     const boolPswrd = validatePassword(userData.password)
     if(boolName == true && boolPswrd == true) {
-        dal.CREATE(userData.username, userData.email, userData.u_name, userData.age) 
-        hashPasswordThenStore(userData.username, userData.password)
+        await dal.CREATE(userData.username, userData.email, userData.u_name, userData.u_age)
+        await hashPasswordThenStore(userData.username, userData.password)
     }
     if(boolName == false) {
-        console.log("Username does not Match")
+        console.log("Username is not Valid")
     }
     if(boolPswrd == false){
-        console.log("Password does not Match")
+        console.log("Password is not Valid")
     }
 }
 
@@ -44,8 +44,12 @@ async function login(loginData) {
 }
 
 async function validateUsername(username) {
-    const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[1-9]).+$")
-    return regex.test(username)
+    const taken = dal.validUsername(username)
+    if(!taken) {
+        const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[1-9]).+$")
+        return regex.test(username)
+    }
+    else {return false}
 }
 
 async function validatePassword(password) {

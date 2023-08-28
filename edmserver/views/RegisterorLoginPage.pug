@@ -3,13 +3,54 @@ extends layout.pug
 block mainContent 
     article(id="LoginView")
         h2 Login
-        input(type="text", class="usernameInput")
-        input(type="text", class="pswrdInput")
+        input(type="text", class="usernameInput", id="uLogin")
+        input(type="text", class="pswrdInput", id="pLogin")
+
+        button(id="loginBTN",type='login') Login
 
     article(id="RegisterView")
         h2 Register
-        input(type="text", class="usernameInput")
-        input(type="text", class="pswrdInput")
-        input(type="text", id="emailInput")
-        input(type="text", id="nameInput")
-        input(type="text", id="ageInput") 
+        input(type="text", class="usernameInput", id="uReg")
+        input(type="text", class="pswrdInput", id="pReg")
+        input(type="text", id="emailInput", id="eReg")
+        input(type="text", id="nameInput", id="nReg")
+        input(type="text", id="ageInput", id="aReg") 
+
+        button(type='registerBTN', type="register") Register
+
+    script.
+        document.getElementById('loginBTN').addEventListener('click', async () => {
+            const uName = document.getElementById('uLogin').value
+            const uPswrd = document.getElementById('pLogin').value
+            const newUser = {
+                username: uName,
+                password: uPswrd
+            }
+
+            try {
+                const response = await fetch('/login', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                    body: JSON.stringify(newUser)
+                })
+
+                if(response.ok) {
+                    const responseData = await response.json()
+                    console.log(responseData.message)
+                } else {
+                    console.log("Login Failure")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
+        document.getElementById('registerBTN').addEventListener('click', async() => {
+            const uName = document.getElementById('uReg').value
+            const uPswrd = document.getElementById('pReg').value
+            const uEmail = document.getElementById('eReg').value
+            const uFullName = document.getElementById('nReg').value
+            const uAge = document.getElementById('aReg').value
+        })

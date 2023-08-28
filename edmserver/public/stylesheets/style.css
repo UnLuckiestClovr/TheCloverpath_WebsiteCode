@@ -178,3 +178,11 @@ h3.FlowerSeasonHeaders {
 #orderDetails {
   background-color: #212121;
 }
+
+#userProfile {
+  display: none;
+}
+
+#userLoginOrReg {
+  display: block;
+}
