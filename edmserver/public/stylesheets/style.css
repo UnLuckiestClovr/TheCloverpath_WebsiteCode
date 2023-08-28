@@ -112,7 +112,7 @@ h3.FlowerSeasonHeaders {
   background-color: #212121;
 }
 
-#FlowerShopInfo {
+#FlowerShopInfo, .ViewSwitchLoginPage {
   background-color: #212121;
   font-size: large;
   text-align: center;
@@ -134,7 +134,7 @@ h3.FlowerSeasonHeaders {
 }
 
 /* CSS */
-.orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn{
+.orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn, .PrettyButton{
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
   --color: #FFFFFF;
@@ -164,13 +164,15 @@ h3.FlowerSeasonHeaders {
 #ConfirmOrder:hover,
 #ConfirmOrder:focus-visible,
 #ReturnBtn:hover,
-#ReturnBtn:focus-visible{
+#ReturnBtn:focus-visible
+.PrettyButton:hover,
+.PrettyButton:focus-visible{
   --_p: 0px;
   outline-color: var(--color);
   outline-offset: .05em;
 }
 
-.orderButton:active, #cancelOrder:active, #ConfirmOrder:active , #ReturnBtn:active{
+.orderButton:active, #cancelOrder:active, #ConfirmOrder:active , #ReturnBtn:active, .PrettyButton:active{
   background: var(--color);
   color: #fff;
 }
@@ -179,10 +181,16 @@ h3.FlowerSeasonHeaders {
   background-color: #212121;
 }
 
-#userProfile {
+#userProfile, #RegisterView {
   display: none;
 }
 
-#userLoginOrReg {
+#userLoginOrReg, #LoginView {
   display: block;
+}
+
+.ViewChangeButton {
+  display: grid;
+  align-items: center;
+  background-color: #212121;
 }

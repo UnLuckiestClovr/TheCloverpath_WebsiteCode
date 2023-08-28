@@ -14,10 +14,10 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.post('/register', function(req, res, next) {
+router.post('/register', async function(req, res, next) {
   try {
     let user = req.body
-    User.u_CREATE(user)
+    await User.u_CREATE(user)
 
     res.json({message: 'User Registration Successful'})
   } catch (error) {
@@ -25,16 +25,15 @@ router.post('/register', function(req, res, next) {
   }
 })
 
-router.post('/login', function(req, res, next) {
+router.post('/login', async function(req, res, next) {
   try {
     const loginData = req.body
-    User.u_Login(loginData)
+    await User.u_Login(loginData)
 
     res.json({message: 'User Login Successful'})
   } catch (error) {
     console.log(error)
   }
-  
 })
 
 module.exports = router; 
