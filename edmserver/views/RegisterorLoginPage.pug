@@ -1,0 +1,124 @@
+extends layout.pug
+
+block mainContent
+    article(id="LoginView") 
+        h2 Login
+        p Username:
+        input(type="text", class="usernameInput", id="uLogin")
+        p Password:
+        input(type="text", class="pswrdInput", id="pLogin")
+        p
+        button(class="PrettyButton", id="loginBTN",type='login') Login
+        p 
+        p     
+        article(class="ViewChangeButton")
+            h3(class="ViewSwitchLoginPage") Don't Have an Account? 
+            button(id="regViewSwitch", class="PrettyButton") Click Here to Register
+
+    article(id="RegisterView") 
+        h2 Register
+        p Username:
+        input(type="text", class="usernameInput", id="uReg")
+        p Password:
+        input(type="text", class="pswrdInput", id="pReg")
+        p Email:
+        input(type="text", class="emailInput", id="eReg")
+        p Full Name (Optional):
+        input(type="text", class="nameInput", id="nReg")
+        p Age (Optional): 
+        input(type="text", class="ageInput", id="aReg")
+        p
+        button(class="PrettyButton", id='registerBTN', type="register") Register
+        p 
+        p 
+        article(class="ViewChangeButton")
+            h3(class="ViewSwitchLoginPage") Already Have an Account? 
+            button(id="logViewSwitch", class="PrettyButton") Click Here to Login
+
+    script.
+        document.getElementById('loginBTN').addEventListener('click', async () => {
+            const uName = document.getElementById('uLogin').value
+            const uPswrd = document.getElementById('pLogin').value
+            const newUser = {
+                username: uName,
+                password: uPswrd
+            }
+
+            try {
+                const response = await fetch('/login', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                })
+
+                if(response.ok) {
+                    const responseData = await response.json()
+                    console.log(responseData.message)
+                } else {
+                    console.log("Login Failure")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
+        document.getElementById('registerBTN').addEventListener('click', async() => {
+            const uName = document.getElementById('uReg').value
+            const uPswrd = document.getElementById('pReg').value
+            const uEmail = document.getElementById('eReg').value
+            const uFullName = document.getElementById('nReg').value
+            const uAge = document.getElementById('aReg').value
+
+            const newUser = {
+                username: uName,
+                password: uPswrd,
+                email: uEmail,
+                u_Name: uFullName,
+                u_Age: uAge
+            }
+
+            try {
+                const response = await fetch('/register', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newUser)
+                })
+                if(response.ok) {
+                    const responseData = await response.json()
+                    console.log(responseData.message)
+                } else {
+                    console.log("Registry Failure")
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
+
+        const LoginView = document.getElementById('LoginView')
+        const RegisterView = document.getElementById('RegisterView')
+        const RegSwitch = document.getElementById('regViewSwitch')
+        const LoginSwitch = document.getElementById('logViewSwitch')
+
+        LoginSwitch.addEventListener('click', function () {
+            changeViewtoLogin()
+        })
+
+        RegSwitch.addEventListener('click', function () {
+            changeViewtoRegister()
+        })
+
+        changeViewtoLogin() {
+            LoginView.style.display = "block"
+            RegisterView.style.display = "none"
+        }
+
+        changeViewtoRegister() {
+            RegisterView.style.display = "block"
+            LoginView.style.display = "none"
+        }
+

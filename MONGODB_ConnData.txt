@@ -1,0 +1,13 @@
+Username: GeneralUser
+Password: vJgb6F8MXNRFpk2i
+
+UserInfo Document Schema:
+
+{"_id": 0,
+  "username": "GeneralUser",
+  "password": "ThisisAGoodPassword",
+  "recentOrders": ["N/A"]
+}
+
+
+ConnString: mongodb+srv://GeneralUser:vJgb6F8MXNRFpk2i@thecloverpatchwebdataba.tw6rwur.mongodb.net/?retryWrites=true&w=majority

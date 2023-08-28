@@ -112,7 +112,7 @@ h3.FlowerSeasonHeaders {
   background-color: #212121;
 }
 
-#FlowerShopInfo {
+#FlowerShopInfo, .ViewSwitchLoginPage {
   background-color: #212121;
   font-size: large;
   text-align: center;
@@ -133,6 +133,7 @@ h3.FlowerSeasonHeaders {
   text-align: center;
 }
 
+<<<<<<< HEAD
 #ItemOrdered {
   display: none;
 }
@@ -140,6 +141,12 @@ h3.FlowerSeasonHeaders {
 .orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn{
   --b: 3px;   
   --s: .45em; 
+=======
+/* CSS */
+.orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn, .PrettyButton{
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+>>>>>>> 8c50b9a563f972db2e87b5d4ef65bf57feab17e3
   --color: #FFFFFF;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
@@ -167,17 +174,33 @@ h3.FlowerSeasonHeaders {
 #ConfirmOrder:hover,
 #ConfirmOrder:focus-visible,
 #ReturnBtn:hover,
-#ReturnBtn:focus-visible{
+#ReturnBtn:focus-visible
+.PrettyButton:hover,
+.PrettyButton:focus-visible{
   --_p: 0px;
   outline-color: var(--color);
   outline-offset: .05em;
 }
 
-.orderButton:active, #cancelOrder:active, #ConfirmOrder:active , #ReturnBtn:active{
+.orderButton:active, #cancelOrder:active, #ConfirmOrder:active , #ReturnBtn:active, .PrettyButton:active{
   background: var(--color);
   color: #fff;
 }
 
 #orderDetails {
+  background-color: #212121;
+}
+
+#userProfile, #RegisterView {
+  display: none;
+}
+
+#userLoginOrReg, #LoginView {
+  display: block;
+}
+
+.ViewChangeButton {
+  display: grid;
+  align-items: center;
   background-color: #212121;
 }

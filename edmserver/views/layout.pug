@@ -3,8 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type="/routes", src="CoffeeShopPage.js")
-    script(type="/routes", src="FlowerShopPage.js")
+    script(src="/javascripts/edm.js", defer)
   body
     h1(id="outerHeader")
       img(
@@ -20,6 +19,9 @@ html
             a(href="/CoffeeShop") Coffee Shop and Cafe
           td
             a(href="/FlowerShop") Flower Parlor and Herbal Shop
+          td 
+            a(id="userLoginOrReg", href="/LoginorRegister") Login / Register
+            a(id="userProfile", href="/Profile") Profile
     p
     block mainContent
   footer
@@ -32,3 +34,6 @@ html
             a(href="/CoffeeShop") Coffee Shop and Cafe
           td
             a(href="/FlowerShop") Flower Parlor and Herbal Shop
+          td 
+            a(id="userLoginOrReg", href="/LoginorRegister") Login / Register
+            a(id="userProfile", href="/Profile") Profile
