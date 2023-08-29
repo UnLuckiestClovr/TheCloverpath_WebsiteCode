@@ -20,7 +20,7 @@ router.post('/register', async function(req, res, next) {
     console.log(user)
     await User.u_CREATE(user)
 
-    res.json({message: 'User Registration Successful'})
+    res.sendStatus(200)
   } catch (error) {
     res.sendStatus(500)
   }
@@ -33,7 +33,7 @@ router.post('/login', async function(req, res, next) {
     await User.u_Login(loginData)
     req.session.user = req.body
 
-    res.json({message: 'User Login Successful'})
+    res.sendStatus(200)
   } catch (error) {
     console.log(error)
   }
