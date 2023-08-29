@@ -24,6 +24,11 @@ async function LOGGEDOUT() {
 document.getElementById('loginBTN').addEventListener('click', async () => {
     const uName = document.getElementById('uLogin').value
     const uPswrd = document.getElementById('pLogin').value
+
+    if(uName === "" || uPswrd === "") {
+        return
+    }
+
     const newUser = {
         username: uName,
         password: uPswrd
@@ -39,6 +44,7 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
         })
 
         if(response.ok) {
+            LOGINVALID()
             const responseData = await response.json()
             console.log(responseData.message)
         } else {
@@ -55,6 +61,12 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     const uEmail = document.getElementById('eReg').value
     const uFullName = document.getElementById('nReg').value
     const uAge = document.getElementById('aReg').value
+
+    if(uName === "" || uPswrd === "" || uEmail === "" || uFullName === "" || uAge === "") {
+        return
+    }
+
+    uAge = parseInt(uAge)
 
     const newUser = {
         username: uName,
