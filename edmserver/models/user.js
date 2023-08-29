@@ -1,6 +1,4 @@
 var dal = require('../dal/Mongo_CRUD')
-var edm = require('../public/javascripts/edm')
-
 
 class User {
     constructor(username, password, email, u_name, age) {
@@ -44,7 +42,7 @@ async function login(loginData) {
     const valid = await dal.LOGIN(loginData.username, loginData.password)
     switch(valid) {
         case "LOGIN VALID":
-            edm.LOGIN_VALID()
+            
             break
         case "Password not Valid":
             break

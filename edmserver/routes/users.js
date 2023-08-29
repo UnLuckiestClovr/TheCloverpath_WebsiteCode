@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   try{
     let user = req.session.user
     User.u_GET(user)
-    
+
     res.sendStatus(200)
   } catch (error) {
     res.sendStatus(500)
