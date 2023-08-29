@@ -62,18 +62,18 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     const uFullName = document.getElementById('nReg').value
     const uAge = document.getElementById('aReg').value
 
-    if(uName === "" || uPswrd === "" || uEmail === "" || uFullName === "" || uAge === "") {
+    if(uName === "" || uPswrd === "" || uEmail === "") {
         return
     }
 
-    uAge = parseInt(uAge)
+    let intAge = parseInt(uAge)
 
     const newUser = {
         username: uName,
         password: uPswrd,
         email: uEmail,
-        u_Name: uFullName,
-        u_Age: uAge
+        u_name: uFullName,
+        u_age: intAge
     }
 
     try {

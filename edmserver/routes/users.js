@@ -27,13 +27,14 @@ router.post('/register', async function(req, res, next) {
 })
 
 router.post('/login', async function(req, res, next) {
-  
   try {
     const loginData = req.body
-    await User.u_Login(loginData)
-    req.session.user = req.body
-
-    res.sendStatus(200)
+    const logSuccess = await User.u_Login(loginData)
+    if(logSuccess) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
   } catch (error) {
     console.log(error)
   }

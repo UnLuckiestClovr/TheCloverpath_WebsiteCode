@@ -12,12 +12,14 @@ class User {
 
 async function getUser(userData) {
     const jsonData = dal.READ(userData.username)
-    return new User(jsonData['username'], jsonData['password'], jsonData['email'], jsonData['u_name'], jsonData['age'])
+    return new User(jsonData['username'], jsonData['password'], jsonData['email'], jsonData['u_name'], jsonData['u_age'])
 }
 
 async function createUser(userData) {
-    const boolName = validateUsername(userData.username)
-    const boolPswrd = validatePassword(userData.password)
+    const boolName = await validateUsername(userData.username)
+    console.log(boolName)
+    const boolPswrd = await validatePassword(userData.password)
+    console.log(boolPswrd)
     if(boolName == true && boolPswrd == true) {
         await dal.CREATE(userData.username, userData.email, userData.u_name, userData.u_age)
         await hashPasswordThenStore(userData.username, userData.password)
@@ -39,15 +41,11 @@ async function hashPasswordThenStore(username, plainPswrd) {
 }
 
 async function login(loginData) {
-    const valid = await dal.LOGIN(loginData.username, loginData.password)
-    switch(valid) {
-        case "LOGIN VALID":
-            
-            break
-        case "Password not Valid":
-            break
-        case "Username Not Valid":
-            break
+    const valid = await dal.LOGIN(loginData)
+    if(valid) {
+        return true
+    } else {
+        return false
     }
 }
 
@@ -56,10 +54,11 @@ async function LOGIN_VALID() {
 }
 
 async function validateUsername(username) {
-    const taken = dal.validUsername(username)
+    const taken = await dal.validUsername(username)
     if(!taken) {
         const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[1-9]).+$")
-        return regex.test(username)
+        const valid = regex.test(username)
+        return valid
     }
     else {return false}
 }

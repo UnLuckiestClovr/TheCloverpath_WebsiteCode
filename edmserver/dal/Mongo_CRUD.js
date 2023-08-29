@@ -151,18 +151,17 @@ async function createNewPasswordBlock(username, hashedPSWRD) {
 // - - - Validation for Login - - -
 
 async function loginValidation(loginData) {
-    const validUsername = loginUsernameCheck(loginData['username'])
+    const validUsername = await loginUsernameCheck(loginData.username)
     if (validUsername == true) {
-        const validPSWRD = validatePassword(loginData['username'], loginData['password'])
+        const validPSWRD = await validatePassword(loginData.username, loginData.password)
         if(validPSWRD == true) {
-            return "LOGIN VALID"
+            return true
         }
         else {
-            return "Password not Valid"
+            return false
         }
-    }
-    else{
-        return "Username Not Valid"
+    } else {
+        return false
     }
 }
 
@@ -177,7 +176,12 @@ async function loginUsernameCheck(username) {
 
         await client.close()
 
-        return (doc != null && doc != undefined)
+        if(doc) {
+            return true
+        }
+        else {
+            return false
+        }
     } catch (error) {
         console.log(error)
     }
