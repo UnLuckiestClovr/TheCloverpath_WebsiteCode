@@ -49,10 +49,6 @@ async function login(loginData) {
     }
 }
 
-async function LOGIN_VALID() {
-
-}
-
 async function validateUsername(username) {
     const taken = await dal.validUsername(username)
     if(!taken) {
