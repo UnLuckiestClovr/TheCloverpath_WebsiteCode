@@ -181,11 +181,11 @@ h3.FlowerSeasonHeaders {
   background-color: #212121;
 }
 
-#userProfile, #RegisterView {
+#RegisterView {
   display: none;
 }
 
-#userLoginOrReg, #LoginView {
+#LoginView {
   display: block;
 }
 

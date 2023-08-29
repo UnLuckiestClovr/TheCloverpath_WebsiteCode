@@ -8,8 +8,8 @@ function switchTabtoProfile() {
 }
 
 function switchTabtoLogReg() {
-    loginRegTab.style.display = 'none';
-    profileTab.style.display = 'block';
+    loginRegTab.style.display = 'block';
+    profileTab.style.display = 'none';
 }
 
 async function LOGINVALID() {
