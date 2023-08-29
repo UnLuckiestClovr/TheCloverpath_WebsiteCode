@@ -1,4 +1,5 @@
 var dal = require('../dal/Mongo_CRUD')
+var edm = require('../public/javascripts/edm')
 
 
 class User {
@@ -40,7 +41,20 @@ async function hashPasswordThenStore(username, plainPswrd) {
 }
 
 async function login(loginData) {
-    dal.LOGIN(loginData.username, loginData.password)
+    const valid = await dal.LOGIN(loginData.username, loginData.password)
+    switch(valid) {
+        case "LOGIN VALID":
+            edm.LOGIN_VALID()
+            break
+        case "Password not Valid":
+            break
+        case "Username Not Valid":
+            break
+    }
+}
+
+async function LOGIN_VALID() {
+
 }
 
 async function validateUsername(username) {

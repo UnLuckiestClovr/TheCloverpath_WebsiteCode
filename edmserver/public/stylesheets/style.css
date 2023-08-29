@@ -164,7 +164,7 @@ h3.FlowerSeasonHeaders {
 #ConfirmOrder:hover,
 #ConfirmOrder:focus-visible,
 #ReturnBtn:hover,
-#ReturnBtn:focus-visible
+#ReturnBtn:focus-visible,
 .PrettyButton:hover,
 .PrettyButton:focus-visible{
   --_p: 0px;

@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -9,6 +10,7 @@ var CoffeeShopRouter = require('./routes/CoffeeShopPage')
 var FlowerShopRouter = require('./routes/FlowerShopPage')
 var LoginorRegRouter = require('./routes/RegisterorLoginPage')
 var usersRouter = require('./routes/users')
+var logoutRouter = require('./routes/logout')
 
 var app = express();
 
@@ -21,12 +23,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'Fl0w3rsAr3Aw3s0m3',
+  cookie: { secure: false },
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use('/', indexRouter);
 app.use('/coffeeshop', CoffeeShopRouter);
 app.use('/FlowerShop', FlowerShopRouter);
 app.use('/LoginorRegister', LoginorRegRouter);
 app.use('/users', usersRouter);
+app.use('/logout', logoutRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

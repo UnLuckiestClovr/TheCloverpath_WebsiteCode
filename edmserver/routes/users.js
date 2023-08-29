@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   try{
-    let user = req.body
+    let user = req.session.user
     User.u_GET(user)
 
     res.sendStatus(200)
@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
 router.post('/register', async function(req, res, next) {
   try {
     let user = req.body
+    console.log(user)
     await User.u_CREATE(user)
 
     res.json({message: 'User Registration Successful'})
@@ -26,9 +27,11 @@ router.post('/register', async function(req, res, next) {
 })
 
 router.post('/login', async function(req, res, next) {
+  
   try {
     const loginData = req.body
     await User.u_Login(loginData)
+    req.session.user = req.body
 
     res.json({message: 'User Login Successful'})
   } catch (error) {
