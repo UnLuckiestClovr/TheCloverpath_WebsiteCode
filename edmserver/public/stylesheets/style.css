@@ -133,20 +133,10 @@ h3.FlowerSeasonHeaders {
   text-align: center;
 }
 
-<<<<<<< HEAD
-#ItemOrdered {
-  display: none;
-}
-
-.orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn{
-  --b: 3px;   
-  --s: .45em; 
-=======
 /* CSS */
 .orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn, .PrettyButton{
   --b: 3px;   /* border thickness */
   --s: .45em; /* size of the corner */
->>>>>>> 8c50b9a563f972db2e87b5d4ef65bf57feab17e3
   --color: #FFFFFF;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
