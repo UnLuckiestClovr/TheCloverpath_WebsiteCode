@@ -11,6 +11,8 @@ var FlowerShopRouter = require('./routes/FlowerShopPage')
 var LoginorRegRouter = require('./routes/RegisterorLoginPage')
 var usersRouter = require('./routes/users')
 var logoutRouter = require('./routes/logout')
+var profileRouter = require('./routes/Profile')
+var QuestionaireRouter = require('./routes/Questionaire')
 
 var app = express();
 
@@ -36,6 +38,8 @@ app.use('/FlowerShop', FlowerShopRouter);
 app.use('/LoginorRegister', LoginorRegRouter);
 app.use('/users', usersRouter);
 app.use('/logout', logoutRouter)
+app.use('/profile', profileRouter)
+app.use('/questionaire', QuestionaireRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

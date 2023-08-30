@@ -2,22 +2,18 @@
 const loginRegTab = document.getElementById('userLoginOrReg')
 const profileTab = document.getElementById('userProfile')
 
-function switchTabtoProfile() {
-    loginRegTab.style.display = 'none';
-    profileTab.style.display = 'block';
-}
+const user = await fetch('/users', {
+    method: "GET",
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(response.body)
+})
 
-function switchTabtoLogReg() {
-    loginRegTab.style.display = 'block';
-    profileTab.style.display = 'none';
-}
+const outputTextBox = document.getElementById('OutputBox')
 
-async function LOGINVALID() {
-    switchTabtoProfile()
-}
-
-async function LOGGEDOUT() {
-    switchTabtoLogReg()
+async function LoginInvalid() {
+    outputTextBox.innerHTML = "Login Unsuccessful: Username or Password Incorrect"
 }
 
 // - - - - - - - - - - - - - - - - - - - - RegLogin Page Scripts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -44,10 +40,10 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
         })
 
         if(response.ok) {
-            LOGINVALID()
             const responseData = await response.json()
             console.log(responseData.message)
         } else {
+            LoginInvalid()
             console.log("Login Failure")
         }
     } catch (error) {

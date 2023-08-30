@@ -12,7 +12,7 @@ class User {
 
 async function getUser(userData) {
     const jsonData = dal.READ(userData.username)
-    return new User(jsonData['username'], jsonData['password'], jsonData['email'], jsonData['u_name'], jsonData['u_age'])
+    return new User(jsonData['username'], jsonData['email'], jsonData['u_name'], jsonData['u_age'])
 }
 
 async function createUser(userData) {

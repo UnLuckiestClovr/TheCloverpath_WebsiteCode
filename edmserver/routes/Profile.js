@@ -1,16 +1,23 @@
 var express = require('express')
-var router = express.router()
+var router = express.Router()
 
-pageData = {
-    
+let pageData = {
+    username: "",
+    fullname: "",
+    age: ""
 }
 
 router.get('/', function(req, res) {
     try {
-        
+        let profUser = req.session.user
+        pageData.username = req.session.user.username
+        pageData.fullname = req.session.user.fullname
+        pageData.age = req.session.user.age
+        console.log(profUser)
     } catch (error) {
         console.log(error)
     }
+    res.render('Profile', {title: "The Cloverpatch", pageData})
 })
 
 module.exports = router; 
