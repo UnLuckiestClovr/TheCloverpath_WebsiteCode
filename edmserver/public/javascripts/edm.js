@@ -8,8 +8,8 @@ function switchTabtoProfile() {
 }
 
 function switchTabtoLogReg() {
-    loginRegTab.style.display = 'none';
-    profileTab.style.display = 'block';
+    loginRegTab.style.display = 'block';
+    profileTab.style.display = 'none';
 }
 
 async function LOGINVALID() {
@@ -24,6 +24,11 @@ async function LOGGEDOUT() {
 document.getElementById('loginBTN').addEventListener('click', async () => {
     const uName = document.getElementById('uLogin').value
     const uPswrd = document.getElementById('pLogin').value
+
+    if(uName === "" || uPswrd === "") {
+        return
+    }
+
     const newUser = {
         username: uName,
         password: uPswrd
@@ -39,6 +44,7 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
         })
 
         if(response.ok) {
+            LOGINVALID()
             const responseData = await response.json()
             console.log(responseData.message)
         } else {
@@ -56,12 +62,18 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     const uFullName = document.getElementById('nReg').value
     const uAge = document.getElementById('aReg').value
 
+    if(uName === "" || uPswrd === "" || uEmail === "") {
+        return
+    }
+
+    let intAge = parseInt(uAge)
+
     const newUser = {
         username: uName,
         password: uPswrd,
         email: uEmail,
-        u_Name: uFullName,
-        u_Age: uAge
+        u_name: uFullName,
+        u_age: intAge
     }
 
     try {

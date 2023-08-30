@@ -135,8 +135,8 @@ h3.FlowerSeasonHeaders {
 
 /* CSS */
 .orderButton, #cancelOrder , #ConfirmOrder, #ReturnBtn, .PrettyButton{
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
+  --b: 3px;   
+  --s: .45em; 
   --color: #FFFFFF;
   
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
@@ -181,11 +181,11 @@ h3.FlowerSeasonHeaders {
   background-color: #212121;
 }
 
-#userProfile, #RegisterView {
+#RegisterView {
   display: none;
 }
 
-#userLoginOrReg, #LoginView {
+#LoginView {
   display: block;
 }
 
