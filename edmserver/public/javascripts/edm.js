@@ -2,13 +2,13 @@
 const loginRegTab = document.getElementById('userLoginOrReg')
 const profileTab = document.getElementById('userProfile')
 
-const user = await fetch('/users', {
-    method: "GET",
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(response.body)
-})
+// const user = fetch('/users', {
+//     method: "GET",
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(response.body)
+// })
 
 const outputTextBox = document.getElementById('OutputBox')
 
@@ -21,9 +21,13 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
     const uName = document.getElementById('uLogin').value
     const uPswrd = document.getElementById('pLogin').value
 
+    console.log("User Input: ", {uName, uPswrd})
+
     if(uName === "" || uPswrd === "") {
+        console.log('Inputs cannot be Empty')
         return
     }
+    console.log("Inputs were Filled")
 
     const newUser = {
         username: uName,
@@ -40,14 +44,14 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
         })
 
         if(response.ok) {
-            const responseData = await response.json()
-            console.log(responseData.message)
+            console.log("Login Successful")
+            window.location.href = "/Profile"
         } else {
             LoginInvalid()
             console.log("Login Failure")
         }
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 })
 
@@ -59,6 +63,7 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     const uAge = document.getElementById('aReg').value
 
     if(uName === "" || uPswrd === "" || uEmail === "") {
+        console.log('Inputs cannot be Empty')
         return
     }
 

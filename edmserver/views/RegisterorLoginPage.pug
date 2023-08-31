@@ -8,13 +8,13 @@ block mainContent
         p Password:
         input(type="text", class="pswrdInput", id="pLogin")
         p
-        button(class="PrettyButton", id="loginBTN",type='login') Login
+        button(class="PrettyButton", id="loginBTN", type='submit') Login
         p  
         p(id="OutputBox") 
         p      
         article(class="ViewChangeButton")
             h3(class="ViewSwitchLoginPage") Don't Have an Account? 
-            button(id="regViewSwitch", class="PrettyButton") Click Here to Register
+            button(id="regViewSwitch", class="PrettyButton", type='submit') Click Here to Register
 
     article(id="RegisterView") 
         h2 Register
@@ -29,9 +29,9 @@ block mainContent
         p Age (Optional): 
         input(type="text", class="ageInput", id="aReg")
         p
-        button(class="PrettyButton", id='registerBTN', type="register") Register
+        button(class="PrettyButton", id='registerBTN', type='submit') Register
         p 
         p 
         article(class="ViewChangeButton")
             h3(class="ViewSwitchLoginPage") Already Have an Account? 
-            button(id="logViewSwitch", class="PrettyButton") Click Here to Login
+            button(id="logViewSwitch", class="PrettyButton", type='submit') Click Here to Login

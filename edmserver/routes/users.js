@@ -32,13 +32,15 @@ router.post('/login', async function(req, res, next) {
     const logSuccess = await User.u_Login(loginData)
     if(logSuccess) {
       console.log("Login Successful")
-      user = User.u_GET(loginData.username)
-      username = user.username
-      fullName = user.u_name
-      age = user.u_age
-      req.session.user = { username, fullName, age }
+      let username = loginData.username
+      let userData = await User.u_GET(username)
+      console.log("User Data: ", userData)
+      let fullname = userData.u_name
+      let age = userData.age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
+      console.log(req.session.user)
       res.sendStatus(200)
-      res.redirect('/')
     } else {
       res.sendStatus(500)
     }

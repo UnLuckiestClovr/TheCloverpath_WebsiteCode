@@ -1,18 +1,17 @@
 var dal = require('../dal/Mongo_CRUD')
 
 class User {
-    constructor(username, password, email, u_name, age) {
+    constructor(username, email, u_name, age) {
         this.username = username
-        this.password = password
         this.email = email
         this.u_name = u_name
         this.age = age
     }
 }
 
-async function getUser(userData) {
-    const jsonData = dal.READ(userData.username)
-    return new User(jsonData['username'], jsonData['email'], jsonData['u_name'], jsonData['u_age'])
+async function getUser(user) {
+    const jsonData = dal.READ(user)
+    return new User(jsonData.username, jsonData.email, jsonData.u_name, jsonData.u_age)
 }
 
 async function createUser(userData) {

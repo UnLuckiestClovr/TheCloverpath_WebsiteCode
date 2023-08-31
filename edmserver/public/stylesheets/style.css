@@ -194,3 +194,16 @@ h3.FlowerSeasonHeaders {
   align-items: center;
   background-color: #212121;
 }
+
+.profileStats {
+  background-color: #212121;
+  font-size: larger;
+}
+
+#QuestionaireButton {
+  font-size: larger;
+}
+
+.profileHeader {
+  font-size: xx-large;
+}
