@@ -57,8 +57,8 @@ router.patch('/update', async function(req, res, next) {
     const updateData = req.body
 
     const uData = {
-      current: userCurrentData,
-      new: updateData
+      currentData: userCurrentData,
+      newData: updateData
     }
 
     const updateSuccess = await User.u_UPDATE(uData)
@@ -83,8 +83,15 @@ router.patch('/update', async function(req, res, next) {
 
 router.patch('/updatequestionaire', async function(req,res, next) {
   try {
+    const userCurrentData = await User.u_GET(req.session.user.username)
     const updateData = req.body
-    const updateSuccess = await User.u_UPDATE(updateData)
+
+    const uData = {
+      currentData: userCurrentData,
+      newData: updateData
+    }
+
+    const updateSuccess = await User.u_UPDATE(uData)
     if(updateSuccess) {
       res.sendStatus(200)
     } else {

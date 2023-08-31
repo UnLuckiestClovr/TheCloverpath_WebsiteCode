@@ -64,11 +64,19 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     const uEmail = await document.getElementById('eReg').value
     const uFullName = await document.getElementById('nReg').value
     const uAge = await document.getElementById('aReg').value
+    const q1Ans = await document.getElementById('question1').value
+    const q2Ans = await document.getElementById('question2').value
+    const q3Ans = await document.getElementById('question3').value
 
-    if(uName === "" || uPswrd === "" || uEmail === "") {
-        console.log('Inputs cannot be Empty')
+    if(uName === "" || uPswrd === "" || uEmail === "" || uFullName === "" || uAge === "") {
+        questionsInvalid.innerHTML = "<p> Profile Inputs cannot be Empty. </p>"
         return
     }
+    if(q1Ans === "" || q2Ans === "" || q3Ans === "") {
+        invalidQuestionaire(q1Ans, q2Ans, q3Ans)
+        return
+    }
+    questionsInvalid.innerHTML = ""
 
     let intAge = parseInt(uAge)
 
@@ -77,7 +85,10 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
         password: uPswrd,
         email: uEmail,
         u_name: uFullName,
-        u_age: intAge
+        u_age: intAge,
+        q1Ans: q1Ans,
+        q2Ans: q2Ans,
+        q3Ans: q3Ans
     }
 
     try {
@@ -90,7 +101,7 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
         })
         if(response.ok) {
             relativeUsername = uName
-            window.location.href = "/questionaire"
+            window.location.href = "/login"
         } else {
             console.log("Registry Failure")
         }
