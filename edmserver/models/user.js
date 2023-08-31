@@ -9,9 +9,9 @@ class User {
     }
 }
 
-async function getUser(user) {
-    const jsonData = dal.READ(user)
-    return new User(jsonData.username, jsonData.email, jsonData.u_name, jsonData.u_age)
+async function getUser(username) {
+    const jsonData = dal.READ(username)
+    return jsonData
 }
 
 async function createUser(userData) {

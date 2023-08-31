@@ -198,12 +198,10 @@ h3.FlowerSeasonHeaders {
 .profileStats {
   background-color: #212121;
   font-size: larger;
-}
-
-#QuestionaireButton {
-  font-size: larger;
+  padding-left: 1%;
 }
 
 .profileHeader {
   font-size: xx-large;
+  text-align: center;
 }

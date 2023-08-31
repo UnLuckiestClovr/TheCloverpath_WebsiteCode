@@ -8,6 +8,7 @@ const options = {
 }
 
 const bcrypt = require('bcrypt')
+const { json } = require('express')
 const saltRounds = 10
 
 const client = new MongoClient(connURL, options)
@@ -38,9 +39,10 @@ async function readUser (inputUsername) {
 
         await client.close()
 
-        const jsonData = JSON(personOBJ)
+        const jsonData = JSON.stringify(personOBJ)
+        const finalJSON = JSON.parse(jsonData)
 
-        return jsonData
+        return finalJSON
     } catch (error) { console.log(error) }
 }
 

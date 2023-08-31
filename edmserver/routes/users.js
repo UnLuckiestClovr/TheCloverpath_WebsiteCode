@@ -36,7 +36,7 @@ router.post('/login', async function(req, res, next) {
       let userData = await User.u_GET(username)
       console.log("User Data: ", userData)
       let fullname = userData.u_name
-      let age = userData.age
+      let age = userData.u_age
       let email = userData.email
       req.session.user = { username, fullname, email, age }
       console.log(req.session.user)
