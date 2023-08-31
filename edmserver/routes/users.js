@@ -126,4 +126,24 @@ router.post('/updateu_age', async function(req, res, next) {
   }
 })
 
+router.post('/updatequestionaire', async function(req,res, next) {
+  try {
+    const updateData = req.body
+    const updateSuccess = await User.u_UPDATE(updateData)
+    const userData = await User.u_GET(updateData.username)
+    if(updateSuccess) {
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports = router; 

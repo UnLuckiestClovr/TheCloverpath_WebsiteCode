@@ -2,32 +2,11 @@ const { MongoClient } = require('mongodb')
 const connURL = 'mongodb+srv://GeneralUser:vJgb6F8MXNRFpk2i@thecloverpatchwebdataba.tw6rwur.mongodb.net/?retryWrites=true&w=majority'
 const MainBranch_DTBName = 'TheCloverpatch_MainBranch'
 const collNames = ["UserInfo", "pswrdStorage", "productCafeOrderList"]
-const options = { 
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}
-
+const options = { useNewUrlParser: true,useUnifiedTopology: true}
 const bcrypt = require('bcrypt')
-const { json } = require('express')
 const saltRounds = 10
 
 const client = new MongoClient(connURL, options)
-
-const initDatabase = async () => {
-    try {
-        await client.connect()
-        const db = client.db(MainBranch_DTBName)
-
-        collNames.forEach(async (collection) => {
-            const collectionExists = await db.listCollections({name: collection}).hasNext()
-            if(collectionExists) { console.log("Collection Exists: ", collection) }
-        })
-
-        await client.close()
-    } catch (error) {
-        console.log("Error Initializing the Database")
-    }
-}
 
 async function readUser (inputUsername) {
     try{
