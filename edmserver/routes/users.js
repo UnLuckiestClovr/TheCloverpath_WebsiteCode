@@ -31,15 +31,92 @@ router.post('/login', async function(req, res, next) {
     const loginData = req.body
     const logSuccess = await User.u_Login(loginData)
     if(logSuccess) {
-      console.log("Login Successful")
       let username = loginData.username
       let userData = await User.u_GET(username)
-      console.log("User Data: ", userData)
       let fullname = userData.u_name
       let age = userData.u_age
       let email = userData.email
       req.session.user = { username, fullname, email, age }
-      console.log(req.session.user)
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.post('/updateusername', async function(req, res, next) {
+  try {
+    const updateData = req.body
+    const updateSuccess = await User.u_UPDATE(updateData)
+    const userData = await User.u_GET(updateData.username)
+    if(updateSuccess) {
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.post('/updateemail', async function(req, res, next) {
+  try {
+    const updateData = req.body
+    const updateSuccess = await User.u_UPDATE(updateData)
+    const userData = await User.u_GET(updateData.username)
+    if(updateSuccess) {
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.post('/updateu_name', async function(req, res, next) {
+  try {
+    const updateData = req.body
+    const updateSuccess = await User.u_UPDATE(updateData)
+    const userData = await User.u_GET(updateData.username)
+    if(updateSuccess) {
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.post('/updateu_age', async function(req, res, next) {
+  try {
+    const updateData = req.body
+    const updateSuccess = await User.u_UPDATE(updateData)
+    const userData = await User.u_GET(updateData.username)
+    if(updateSuccess) {
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      req.session.user = { username, fullname, email, age }
       res.sendStatus(200)
     } else {
       res.sendStatus(500)

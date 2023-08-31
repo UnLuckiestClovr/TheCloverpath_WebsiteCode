@@ -86,7 +86,7 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
             body: JSON.stringify(newUser)
         })
         if(response.ok) {
-            window.location.href = "/login"
+            window.location.href = "/questionaire"
         } else {
             console.log("Registry Failure")
         }

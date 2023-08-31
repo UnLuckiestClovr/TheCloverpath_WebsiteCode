@@ -70,7 +70,10 @@ async function createUser(username, email, name, age) {
             "username": username,
             "email": email,
             "u_name": name,
-            "u_age": age
+            "u_age": age,
+            "q1Ans": "",
+            "q2Ans": "",
+            "q3Ans": ""
         }
 
         await coll.insertOne(finalJSON)
