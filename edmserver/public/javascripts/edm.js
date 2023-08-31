@@ -18,8 +18,8 @@ async function LoginInvalid() {
 
 // - - - - - - - - - - - - - - - - - - - - RegLogin Page Scripts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 document.getElementById('loginBTN').addEventListener('click', async () => {
-    const uName = document.getElementById('uLogin').value
-    const uPswrd = document.getElementById('pLogin').value
+    const uName = await document.getElementById('uLogin').value
+    const uPswrd = await document.getElementById('pLogin').value
 
     console.log("User Input: ", {uName, uPswrd})
 
@@ -56,11 +56,11 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
 })
 
 document.getElementById('registerBTN').addEventListener('click', async() => {
-    const uName = document.getElementById('uReg').value
-    const uPswrd = document.getElementById('pReg').value
-    const uEmail = document.getElementById('eReg').value
-    const uFullName = document.getElementById('nReg').value
-    const uAge = document.getElementById('aReg').value
+    const uName = await document.getElementById('uReg').value
+    const uPswrd = await document.getElementById('pReg').value
+    const uEmail = await document.getElementById('eReg').value
+    const uFullName = await document.getElementById('nReg').value
+    const uAge = await document.getElementById('aReg').value
 
     if(uName === "" || uPswrd === "" || uEmail === "") {
         console.log('Inputs cannot be Empty')
@@ -86,8 +86,7 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
             body: JSON.stringify(newUser)
         })
         if(response.ok) {
-            const responseData = await response.json()
-            console.log(responseData.message)
+            window.location.href = "/login"
         } else {
             console.log("Registry Failure")
         }
