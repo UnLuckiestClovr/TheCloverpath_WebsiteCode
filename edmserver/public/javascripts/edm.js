@@ -95,7 +95,6 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
     }
 })
 
-
 const LoginView = document.getElementById('LoginView')
 const RegisterView = document.getElementById('RegisterView')
 const RegSwitch = document.getElementById('regViewSwitch')

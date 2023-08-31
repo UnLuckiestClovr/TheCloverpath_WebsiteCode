@@ -205,3 +205,21 @@ h3.FlowerSeasonHeaders {
   font-size: xx-large;
   text-align: center;
 }
+
+.QuestionaireSelection {
+  background-color: #212121;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+.QuestionHeader {
+  font-size: 35px;
+}
+
+#SubmitQuestionaire {
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  background-color:#212121;
+  margin-top: 1%;
+}
