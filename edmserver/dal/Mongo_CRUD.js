@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb')
 const connURL = 'mongodb+srv://GeneralUser:vJgb6F8MXNRFpk2i@thecloverpatchwebdataba.tw6rwur.mongodb.net/?retryWrites=true&w=majority'
 const MainBranch_DTBName = 'TheCloverpatch_MainBranch'
-const collNames = ["UserInfo", "pswrdStorage", "productCafeOrderList"]
+const collNames = ["UserInfo", "pswrdStorage", "productCafeOrderList", "questionaireAnswerStatistics"]
 const options = { useNewUrlParser: true,useUnifiedTopology: true}
 const bcrypt = require('bcrypt')
 const saltRounds = 10
@@ -68,16 +68,15 @@ async function updateUser(updateData) {
     try {
         await client.connect()
         const db = client.db(MainBranch_DTBName)
-        const coll = db.collection()
+        const coll = db.collection(collNames[0])
         console.log("Collection Found Succesfully")
 
-        const currentData = updateData.current
-        const newData = updateData.new
+        const currentData = (updateData.currentData)
+        const newData = (updateData.newData)
 
-        console.log(currentData)
-        console.log(newData)
 
         const origUser = currentData.username
+        console.log("Username: ", origUser)
 
         const docExists = await coll.findOne({username: origUser})
         if(docExists) {
@@ -103,8 +102,8 @@ async function updateUser(updateData) {
             if(newData.q3Ans !== undefined && newData.q3Ans !== "" && newData.q3Ans !== currentData.q3Ans) {
                 currentData.q3Ans = newData.q3Ans
             }
-
             coll.updateOne({username: origUser}, {$set: currentData})
+
         }
         else{console.log("Document Does not Exist Within Database")}
     } catch (error) {
@@ -222,6 +221,54 @@ async function validatePassword(username, pswrd) {
     
 }
 
+// - - - - Statistics Questionaire Info - - - - - - - - - - - -
+async function updateAPIGraph(q1Ans, q2Ans, q3Ans) {
+    try {
+        await client.connect()
+
+        const db = client.db(MainBranch_DTBName)
+        const coll = db.collection(collNames[3])
+
+        const graphOBJ = (await coll.findOne({username: username}))
+
+        switch(q1Ans) {
+
+        }
+        switch(q2Ans) {
+
+        }
+        switch(q3Ans) {
+
+        }
+
+
+        await client.close()
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+async function returnQuestionOBJ(obj_id) {
+    try {
+        await client.connect()
+
+        const db = client.db(MainBranch_DTBName)
+        const coll = db.collection(collNames[3])
+
+        const graphOBJ = await coll.findOne({_id: obj_id})
+
+        await client.close()
+
+        return graphOBJ
+    } catch (error) {console.log(error)}
+}
+
+
+
+
+
+
 
 module.exports = {
     READ: readUser,
@@ -230,5 +277,6 @@ module.exports = {
     StoreHash: hashPassword,
     validUsername: loginUsernameCheck, 
     ValidPSWRD: validatePassword,
-    LOGIN: loginValidation
+    LOGIN: loginValidation,
+    statGET: returnQuestionOBJ
 }
