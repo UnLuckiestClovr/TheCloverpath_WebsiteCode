@@ -17,6 +17,8 @@ async function LoginInvalid() {
 }
 
 // - - - - - - - - - - - - - - - - - - - - RegLogin Page Scripts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+var relativeUsername = ""
+
 document.getElementById('loginBTN').addEventListener('click', async () => {
     const uName = await document.getElementById('uLogin').value
     const uPswrd = await document.getElementById('pLogin').value
@@ -45,6 +47,7 @@ document.getElementById('loginBTN').addEventListener('click', async () => {
 
         if(response.ok) {
             console.log("Login Successful")
+            relativeUsername = uName
             window.location.href = "/Profile"
         } else {
             LoginInvalid()
@@ -86,6 +89,7 @@ document.getElementById('registerBTN').addEventListener('click', async() => {
             body: JSON.stringify(newUser)
         })
         if(response.ok) {
+            relativeUsername = uName
             window.location.href = "/questionaire"
         } else {
             console.log("Registry Failure")
@@ -123,7 +127,7 @@ function changeViewtoRegister() {
 const subQuestionAnswersBTN = document.getElementById('SubmitQuestionaire')
 const questionsInvalid = document.getElementById('questionInvalidOutput')
 
-subQuestionAnswersBTN.addEventListener('click', function () {
+subQuestionAnswersBTN.addEventListener('click', async function () {
     const q1 = document.getElementById('question1')
     const q2 = document.getElementById('question2')
     const q3 = document.getElementById('question3')
@@ -134,25 +138,31 @@ subQuestionAnswersBTN.addEventListener('click', function () {
     }
     questionsInvalid.innerHTML = ""
 
-    username = 
-
     const questionAnswers = {
-
+        username: relativeUsername,
+        qAns1: q1.value,
+        qAns2: q2.value,
+        qAns3: q3.value
     }
 
     try{
         const response = await fetch('/users/updatequestionaire', {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(questionAnswers)
         })
+        if(response.ok) {
+            relativeUsername = ""
+        }
+    } catch (error) {
+        console.log(error)
     }
 })
 
 function invalidQuestionaire(ans1, ans2, ans3) {
-    let textVar = "<article>"
+    let textVar = "<article style='color: red'>"
     if(ans1 === "") {
         textVar += "<p> Question 1 Requires Input </p>"
     }

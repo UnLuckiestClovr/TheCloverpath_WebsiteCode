@@ -14,6 +14,8 @@ router.get('/', function(req, res, next) {
   }
 });
 
+let qTempUsername = ""
+
 router.post('/register', async function(req, res, next) {
   try {
     let user = req.body
@@ -36,7 +38,10 @@ router.post('/login', async function(req, res, next) {
       let fullname = userData.u_name
       let age = userData.u_age
       let email = userData.email
-      req.session.user = { username, fullname, email, age }
+      let q1Ans = userData.q1Ans
+      let q2Ans = userData.q2Ans
+      let q3Ans = userData.q3Ans
+      req.session.user = { username, fullname, email, age, q1Ans, q2Ans, q3Ans }
       res.sendStatus(200)
     } else {
       res.sendStatus(500)
@@ -46,17 +51,27 @@ router.post('/login', async function(req, res, next) {
   }
 })
 
-router.post('/updateusername', async function(req, res, next) {
+router.patch('/update', async function(req, res, next) {
   try {
+    const userCurrentData = await User.u_GET(req.session.user.username)
     const updateData = req.body
-    const updateSuccess = await User.u_UPDATE(updateData)
-    const userData = await User.u_GET(updateData.username)
+
+    const uData = {
+      current: userCurrentData,
+      new: updateData
+    }
+
+    const updateSuccess = await User.u_UPDATE(uData)
     if(updateSuccess) {
+      const userData = await User.u_GET(updateData.username)
       let username = userData.username
       let fullname = userData.u_name
       let age = userData.u_age
       let email = userData.email
-      req.session.user = { username, fullname, email, age }
+      let q1Ans = userData.q1Ans
+      let q2Ans = userData.q2Ans
+      let q3Ans = userData.q3Ans
+      req.session.user = { username, fullname, email, age, q1Ans, q2Ans, q3Ans }
       res.sendStatus(200)
     } else {
       res.sendStatus(500)
@@ -66,67 +81,7 @@ router.post('/updateusername', async function(req, res, next) {
   }
 })
 
-router.post('/updateemail', async function(req, res, next) {
-  try {
-    const updateData = req.body
-    const updateSuccess = await User.u_UPDATE(updateData)
-    const userData = await User.u_GET(updateData.username)
-    if(updateSuccess) {
-      let username = userData.username
-      let fullname = userData.u_name
-      let age = userData.u_age
-      let email = userData.email
-      req.session.user = { username, fullname, email, age }
-      res.sendStatus(200)
-    } else {
-      res.sendStatus(500)
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-router.post('/updateu_name', async function(req, res, next) {
-  try {
-    const updateData = req.body
-    const updateSuccess = await User.u_UPDATE(updateData)
-    const userData = await User.u_GET(updateData.username)
-    if(updateSuccess) {
-      let username = userData.username
-      let fullname = userData.u_name
-      let age = userData.u_age
-      let email = userData.email
-      req.session.user = { username, fullname, email, age }
-      res.sendStatus(200)
-    } else {
-      res.sendStatus(500)
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-router.post('/updateu_age', async function(req, res, next) {
-  try {
-    const updateData = req.body
-    const updateSuccess = await User.u_UPDATE(updateData)
-    const userData = await User.u_GET(updateData.username)
-    if(updateSuccess) {
-      let username = userData.username
-      let fullname = userData.u_name
-      let age = userData.u_age
-      let email = userData.email
-      req.session.user = { username, fullname, email, age }
-      res.sendStatus(200)
-    } else {
-      res.sendStatus(500)
-    }
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-router.post('/updatequestionaire', async function(req,res, next) {
+router.patch('/updatequestionaire', async function(req,res, next) {
   try {
     const updateData = req.body
     const updateSuccess = await User.u_UPDATE(updateData)

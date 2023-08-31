@@ -71,14 +71,36 @@ async function updateUser(updateData) {
         const coll = db.collection()
         console.log("Collection Found Succesfully")
 
-        const docExists = await coll.findOne({username: updateData['username']})
+        if(updateData.username !== undefined) {
+            
+        }
+        if(updateData.email !== undefined) {
+            
+        }
+        if(updateData.u_name !== undefined) {
+            
+        }
+        if(updateData.u_age !== undefined) {
+            
+        }
+        if(updateData.q1Ans !== undefined) {
+            
+        }
+        if(updateData.q2Ans !== undefined) {
+            
+        }
+        if(updateData.q3Ans !== undefined) {
+            
+        }
+
+        const docExists = await coll.findOne({username: updateData.username})
         if(docExists) {
-            coll.updateOne({username: updateData['username']}, {$set: updateData})
+            coll.updateOne({username: updateData.username}, {$set: updateData})
         }
         else{console.log("Document Does not Exist Within Database")}
     } catch (error) {
         console.log(error)
-        console.log("CRUD ~ 82")
+        console.log("CRUD ~ 67")
     } 
 }
 
