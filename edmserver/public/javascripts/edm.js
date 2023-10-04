@@ -278,7 +278,7 @@ try {
 try {
     document.getElementById('LogoutBTN').addEventListener('click', async function() {
         const response = await fetch('/logout', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
