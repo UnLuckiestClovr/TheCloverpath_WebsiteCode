@@ -123,7 +123,7 @@ function changeViewtoRegister() {
 const subQuestionAnswersBTN = document.getElementById('SubmitQuestionaire')
 const questionsInvalid = document.getElementById('questionInvalidOutput')
 
-subQuestionAnswersBTN.addEventListener('click', function () {
+async function handleQuestionSubmit() {
     const q1 = document.getElementById('question1')
     const q2 = document.getElementById('question2')
     const q3 = document.getElementById('question3')
@@ -134,7 +134,7 @@ subQuestionAnswersBTN.addEventListener('click', function () {
     }
     questionsInvalid.innerHTML = ""
 
-    username = 
+    username = ""
 
     const questionAnswers = {
 
@@ -148,7 +148,11 @@ subQuestionAnswersBTN.addEventListener('click', function () {
             },
             body: JSON.stringify(questionAnswers)
         })
-    }
+    } catch (error) {}
+}
+
+subQuestionAnswersBTN.addEventListener('click', function () {
+    handleQuestionSubmit()
 })
 
 function invalidQuestionaire(ans1, ans2, ans3) {
