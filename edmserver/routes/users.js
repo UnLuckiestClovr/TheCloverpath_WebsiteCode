@@ -82,9 +82,7 @@ router.patch('/update', async function(req, res, next) {
 router.patch('/updatequestionaire', async function(req,res, next) {
   try {
     const userCurrentData = await User.u_GET(req.session.user.username)
-    console.log("Current Data = " + userCurrentData)
     const updateData = req.body
-    console.log("New Data = " + updateData)
 
     const uData = {
       currentData: userCurrentData,
