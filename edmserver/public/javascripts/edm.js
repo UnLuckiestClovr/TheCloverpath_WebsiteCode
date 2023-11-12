@@ -135,6 +135,7 @@ try {
     }
 } catch (error) {}
 
+
 // - - - - - - Questionaire Script - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const questionsInvalid = document.getElementById('questionInvalidOutput')
 
@@ -222,6 +223,7 @@ try {
         }
     })
 } catch (error) {}
+
 
 // - - - - - - - - - Chart Script - - - - - - - - - -
 

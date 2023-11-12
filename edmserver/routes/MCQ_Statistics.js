@@ -12,10 +12,10 @@ router.get('/q1', async function(req, res, next) {
     try {
         const graphData = await dal.statGET('Question1')
         res.json({
-            Ans1: graphData.Ans1,
-            Ans2: graphData.Ans2,
-            Ans3: graphData.Ans3,
-            Ans4: graphData.Ans4
+            Ans1: graphData.Coffee,
+            Ans2: graphData.Hot_Cocoa,
+            Ans3: graphData.Tea,
+            Ans4: graphData.None
         })
     }
     catch (error) {console.log(error)}
@@ -25,11 +25,11 @@ router.get('/q2', async function(req, res, next) {
     try {
         const graphData = await dal.statGET('Question2')
         res.json({
-            Ans1: graphData.Ans1,
-            Ans2: graphData.Ans2,
-            Ans3: graphData.Ans3,
-            Ans4: graphData.Ans4,
-            Ans5: graphData.ans5
+            Ans1: graphData.Vanilla,
+            Ans2: graphData.Chocolate,
+            Ans3: graphData.Strawberry,
+            Ans4: graphData.Neopolitan,
+            Ans5: graphData.Other
         })
     }
     catch (error) {console.log(error)}
@@ -39,13 +39,13 @@ router.get('/q3', async function(req, res, next) {
     try {
         const graphData = await dal.statGET('Question3')
         res.json({
-            Ans1: graphData.Ans1,
-            Ans2: graphData.Ans2,
-            Ans3: graphData.Ans3,
-            Ans4: graphData.Ans4,
-            Ans5: graphData.Ans5,
-            Ans6: graphData.Ans6,
-            Ans7: graphData.Ans7
+            Ans1: graphData.Red,
+            Ans2: graphData.Orange,
+            Ans3: graphData.Yellow,
+            Ans4: graphData.Green,
+            Ans5: graphData.Blue,
+            Ans6: graphData.Purple,
+            Ans7: graphData.Violet
         })
     }
     catch (error) {console.log(error)}

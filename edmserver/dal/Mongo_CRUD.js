@@ -69,6 +69,7 @@ async function updateUser(updateData) {
         await client.connect()
         const db = client.db(MainBranch_DTBName)
         const coll = db.collection(collNames[0])
+        const collQChart = db.collection(collNames[3])
         console.log("Collection Found Succesfully")
 
         const currentData = (updateData.currentData)
@@ -76,7 +77,6 @@ async function updateUser(updateData) {
 
 
         const origUser = currentData.username
-        console.log("Username: ", origUser)
 
         const docExists = await coll.findOne({username: origUser})
         if(docExists) {
@@ -92,17 +92,40 @@ async function updateUser(updateData) {
             if(newData.u_age !== undefined && newData.u_age !== "" && newData.u_age !== currentData.u_age) {
                 currentData.u_age = newData.u_age
             }
-    
-            if(newData.q1Ans !== undefined && newData.q1Ans !== "" && newData.q1Ans !== currentData.q1Ans) {
-                currentData.q1Ans = newData.q1Ans
+
+            // Update function to subtract the original counts by 1 and add 1 to the new counts
+            const updateAnswer = async (questionId, currentAnswer, newAnswer) => {
+                const updateFieldDecrement = {};
+                const updateFieldIncrement = {};
+
+                if(currentAnswer === "Hot Cocoa") {
+                    currentAnswer = "Hot_Cocoa"
+                }
+                if(newAnswer === "Hot Cocoa") {
+                    newAnswer = "Hot_Cocoa"
+                }
+
+                updateFieldDecrement[currentAnswer] = -1;
+                updateFieldIncrement[newAnswer] = 1;
+
+                await collQChart.updateOne({ _id: questionId }, { $inc: updateFieldDecrement });
+                await collQChart.updateOne({ _id: questionId }, { $inc: updateFieldIncrement });
+            };
+
+            if (newData.q1Ans !== undefined && newData.q1Ans !== "" && newData.q1Ans !== currentData.q1Ans) {
+                await updateAnswer("Question1", currentData.q1Ans, newData.q1Ans);
+                currentData.q1Ans = newData.q1Ans;
             }
-            if(newData.q2Ans !== undefined && newData.q2Ans !== "" && newData.q2Ans !== currentData.q2Ans) {
-                currentData.q2Ans = newData.q2Ans
+            if (newData.q2Ans !== undefined && newData.q2Ans !== "" && newData.q2Ans !== currentData.q2Ans) {
+                await updateAnswer("Question2", currentData.q2Ans, newData.q2Ans);
+                currentData.q2Ans = newData.q2Ans;
             }
-            if(newData.q3Ans !== undefined && newData.q3Ans !== "" && newData.q3Ans !== currentData.q3Ans) {
-                currentData.q3Ans = newData.q3Ans
+            if (newData.q3Ans !== undefined && newData.q3Ans !== "" && newData.q3Ans !== currentData.q3Ans) {
+                await updateAnswer("Question3", currentData.q3Ans, newData.q3Ans);
+                currentData.q3Ans = newData.q3Ans;
             }
-            coll.updateOne({username: origUser}, {$set: currentData})
+
+            await coll.updateOne({username: origUser}, {$set: currentData})
 
         }
         else{console.log("Document Does not Exist Within Database")}
@@ -231,16 +254,7 @@ async function updateAPIGraph(q1Ans, q2Ans, q3Ans) {
 
         const graphOBJ = (await coll.findOne({username: username}))
 
-        switch(q1Ans) {
-
-        }
-        switch(q2Ans) {
-
-        }
-        switch(q3Ans) {
-
-        }
-
+        
 
         await client.close()
     } catch (error) {
