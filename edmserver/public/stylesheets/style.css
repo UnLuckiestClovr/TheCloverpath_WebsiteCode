@@ -216,10 +216,14 @@ h3.FlowerSeasonHeaders {
   font-size: 35px;
 }
 
-#SubmitQuestionaire {
+#SubmitQuestionaire, #StatisticCharts {
   text-align: center;
   align-items: center;
   width: 100%;
   background-color:#212121;
   margin-top: 1%;
+}
+
+#StatisticCharts canvas {
+  background-color: #fff;
 }

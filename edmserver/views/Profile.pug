@@ -12,8 +12,12 @@ block mainContent
     br
     article(class="profileStats")
         h3(class="profileHeader") Questionaire Answers: 
-        h3 Coffee or Tea? : 
-        h3 Favorite Ice Cream Flavour? : 
-        h3 
+        h3 Coffee, Hot Cocoa, or Tea : #{pageData.q1Ans}
+        h3 Favorite Ice Cream Flavour : #{pageData.q2Ans}
+        h3 Favorite Color : #{pageData.q3Ans}
         br
     br
+    a(class="PrettyButton", href="/Questionaire") Edit Questionaire Answers 
+    br
+    br
+    button(id="LogoutBTN", class="PrettyButton") Log Out

@@ -20,9 +20,12 @@ async function createUser(userData) {
     const boolPswrd = await validatePassword(userData.password)
     console.log(boolPswrd)
     if(boolName == true && boolPswrd == true) {
-        await dal.CREATE(userData.username, userData.email, userData.u_name, userData.u_age)
+        await dal.CREATE(userData.username, userData.email, userData.u_name, userData.u_age, userData.q1Ans, userData.q2Ans, userData.q3Ans)
         await hashPasswordThenStore(userData.username, userData.password)
+
+
     }
+
     if(boolName == false) {
         console.log("Username is not Valid")
     }
@@ -32,7 +35,13 @@ async function createUser(userData) {
 }
 
 async function updateUser(userData) {
-    dal.UPDATE(userData)
+    try {
+        dal.UPDATE(userData)
+        return true
+    }
+    catch (error) {
+        return false
+    }
 }
 
 async function hashPasswordThenStore(username, plainPswrd) {
