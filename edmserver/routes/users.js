@@ -91,6 +91,16 @@ router.patch('/updatequestionaire', async function(req,res, next) {
 
     const updateSuccess = await User.u_UPDATE(uData)
     if(updateSuccess) {
+      const userData = await User.u_GET(req.session.user.username)
+      let username = userData.username
+      let fullname = userData.u_name
+      let age = userData.u_age
+      let email = userData.email
+      let q1Ans = userData.q1Ans
+      let q2Ans = userData.q2Ans
+      let q3Ans = userData.q3Ans
+      req.session.user = { username, fullname, email, age, q1Ans, q2Ans, q3Ans }
+
       res.sendStatus(200)
     } else {
       res.sendStatus(500)
