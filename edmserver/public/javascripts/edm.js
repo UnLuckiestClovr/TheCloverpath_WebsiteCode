@@ -137,6 +137,7 @@ try {
 
 
 // - - - - - - Questionaire Script - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+try {
 const questionsInvalid = document.getElementById('questionInvalidOutput')
 
 subQuestionAnswersBTN.addEventListener('click', async function () {
@@ -224,6 +225,7 @@ try {
             console.log("Error Updating Info")
         }
     })
+} catch (error) {}
 } catch (error) {}
 
 
