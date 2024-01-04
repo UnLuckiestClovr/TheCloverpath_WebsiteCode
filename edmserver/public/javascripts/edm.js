@@ -139,7 +139,7 @@ try {
 // - - - - - - Questionaire Script - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 const questionsInvalid = document.getElementById('questionInvalidOutput')
 
-subQuestionAnswersBTN.addEventListener('click', function () {
+subQuestionAnswersBTN.addEventListener('click', async function () {
     const q1 = document.getElementById('question1')
     const q2 = document.getElementById('question2')
     const q3 = document.getElementById('question3')
@@ -150,10 +150,10 @@ subQuestionAnswersBTN.addEventListener('click', function () {
     }
     questionsInvalid.innerHTML = ""
 
-    username = 
-
     const questionAnswers = {
-
+        q1Ans: q1.value,
+        q2Ans: q2.value,
+        q3Ans: q3.value
     }
 
     try{
@@ -164,6 +164,8 @@ subQuestionAnswersBTN.addEventListener('click', function () {
             },
             body: JSON.stringify(questionAnswers)
         })
+    } catch (error) {
+        
     }
 })
 
