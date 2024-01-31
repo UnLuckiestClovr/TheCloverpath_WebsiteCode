@@ -12,6 +12,8 @@ a {
   color: #00B7FF;
 }
 
+
+
 h2 {
   font-family: 'Cinzel', sans-serif;
   color: whitesmoke;
@@ -72,12 +74,14 @@ table.headerrow {
 }
 
 #WelcomeMessage {
+  background-color: #212121;
   font-size: larger;
   font-family: 'Cinzel', sans-serif;
   text-align: center;
 }
 
 #outerHeader, #BusinessIntro {
+  background-color: #212121;
   width:100%;
   display: flex;
   justify-content: center;
