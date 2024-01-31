@@ -80,7 +80,13 @@ table.headerrow {
   text-align: center;
 }
 
-#outerHeader, #BusinessIntro {
+#outerHeader {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+#BusinessIntro {
   background-color: #212121;
   width:100%;
   display: flex;
