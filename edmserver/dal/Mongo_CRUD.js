@@ -189,6 +189,8 @@ async function createNewPasswordBlock(username, hashedPSWRD) {
 
 async function loginValidation(loginData) {
     const validUsername = await loginUsernameCheck(loginData.username)
+    console.log("DAL User Validation: " + validUsername)
+
     if (validUsername == true) {
         const validPSWRD = await validatePassword(loginData.username, loginData.password)
         if(validPSWRD == true) {

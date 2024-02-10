@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/register', async function(req, res, next) {
+  console.log("Running Register")
   try {
     let user = req.body
     console.log(user)

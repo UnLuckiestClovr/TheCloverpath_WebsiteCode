@@ -16,14 +16,10 @@ async function getUser(username) {
 
 async function createUser(userData) {
     const boolName = await validateUsername(userData.username)
-    console.log(boolName)
     const boolPswrd = await validatePassword(userData.password)
-    console.log(boolPswrd)
     if(boolName == true && boolPswrd == true) {
         await dal.CREATE(userData.username, userData.email, userData.u_name, userData.u_age, userData.q1Ans, userData.q2Ans, userData.q3Ans)
         await hashPasswordThenStore(userData.username, userData.password)
-
-
     }
 
     if(boolName == false) {

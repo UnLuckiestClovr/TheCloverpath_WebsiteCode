@@ -102,7 +102,7 @@ try {
             })
             if(response.ok) {
                 relativeUsername = uName
-                window.location.href = "/login"
+                window.location.href = "/LoginorRegister"
             } else {
                 console.log("Registry Failure")
             }
