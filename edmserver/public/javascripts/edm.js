@@ -77,7 +77,7 @@ try {
             invalidQuestionaire(q1Ans, q2Ans, q3Ans)
             return
         }
-        questionsInvalid.innerHTML = ""
+        questionInvalidOutput.innerHTML = ""
 
         let intAge = parseInt(uAge)
 
