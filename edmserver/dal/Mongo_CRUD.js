@@ -256,8 +256,6 @@ async function updateAPIGraph(q1Ans, q2Ans, q3Ans) {
 
         const graphOBJ = (await coll.findOne({username: username}))
 
-        
-
         await client.close()
     } catch (error) {
         console.log(error)

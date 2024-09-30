@@ -20,7 +20,7 @@ async function LoginInvalid() {
 var relativeUsername = ""
 
 try {
-    document.getElementById('loginBTN').addEventListener('click', async () => {
+    document.getElementById('loginBTN').addEventListener('click', async () => { 
         const uName = await document.getElementById('uLogin').value
         const uPswrd = await document.getElementById('pLogin').value
 

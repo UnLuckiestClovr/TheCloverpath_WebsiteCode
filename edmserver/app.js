@@ -1,19 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
-var session = require('express-session')
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var CoffeeShopRouter = require('./routes/CoffeeShopPage')
-var FlowerShopRouter = require('./routes/FlowerShopPage')
-var LoginorRegRouter = require('./routes/RegisterorLoginPage')
-var usersRouter = require('./routes/users')
-var logoutRouter = require('./routes/logout')
-var profileRouter = require('./routes/Profile')
-var QuestionaireRouter = require('./routes/Questionaire')
-var questionStatisticsRouter = require('./routes/MCQ_Statistics')
+var CoffeeShopRouter = require('./routes/CoffeeShopPage');
+var FlowerShopRouter = require('./routes/FlowerShopPage');
+var LoginorRegRouter = require('./routes/RegisterorLoginPage');
+var usersRouter = require('./routes/users');
+var logoutRouter = require('./routes/logout');
+var profileRouter = require('./routes/Profile');
+var QuestionaireRouter = require('./routes/Questionaire');
+var questionStatisticsRouter = require('./routes/MCQ_Statistics');
 
 var app = express();
 
