@@ -1,5 +1,8 @@
 const { MongoClient } = require('mongodb')
-const connURL = 'mongodb+srv://GeneralUser:vJgb6F8MXNRFpk2i@thecloverpatchwebdataba.tw6rwur.mongodb.net/?retryWrites=true&w=majority'
+
+const dtbUsername = "GeneralUser";
+const dtbPass = "vJgb6F8MXNRFpk2i";
+const connURL = `mongodb+srv://${dtbUsername}:${dtbPass}@thecloverpatchwebdataba.tw6rwur.mongodb.net/?retryWrites=true&w=majority`
 const MainBranch_DTBName = 'TheCloverpatch_MainBranch'
 const collNames = ["UserInfo", "pswrdStorage", "productCafeOrderList", "questionaireAnswerStatistics"]
 const options = { useNewUrlParser: true,useUnifiedTopology: true}
